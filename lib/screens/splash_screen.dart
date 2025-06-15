@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:task_tracker_app/constants/colors.dart';
 import 'package:task_tracker_app/constants/images.dart';
 import 'package:task_tracker_app/constants/texts.dart';
+import 'package:task_tracker_app/screens/log_in_screen.dart';
 
 import 'home_screen.dart';
 
@@ -30,7 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   List<Widget> _buildStackWidgets() {
     return [
-      Image.asset(AppImages.SPLASH_SCREEN_BG),
+      Positioned(
+        child: Image.asset(
+          AppImages.SPLASH_SCREEN_BG,
+          fit: BoxFit.cover, // fill background properly
+        ),
+      ),
       _buildTitleText(),
       _buildDescriptionText(),
     ];
@@ -42,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget _buildTitleText() {
     return Positioned(
-      top: height * 0.550,
+      top: height * 0.580,
       left: width * 0.200,
       child: Text(
         textAlign: TextAlign.center,
@@ -83,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return HomeScreen();
+                return LogInScreen();
               },
             ),
           );

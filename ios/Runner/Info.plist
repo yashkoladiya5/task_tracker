@@ -45,5 +45,12 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+    <string>This app uses the local network for debugging and development purposes.</string>
+<key>NSBonjourServices</key>
+<array>
+    <string>_dartobservatory._tcp</string>
+</array>
+
 </dict>
 </plist>
