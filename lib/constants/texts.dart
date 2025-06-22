@@ -13,4 +13,8 @@ class AppTexts {
   static const String selectAllTask = "Select All Task";
   static const String logIn = "Log In";
   static const String logInHeading = "L  O  G  I  N";
+  static const String notAccount = "New to task tracker?";
+  static const String alreadyAccount = "Already have account?";
+  static const String signUp = "Sign Up";
+  static const String signUpHeading = "S I G N U P";
 }

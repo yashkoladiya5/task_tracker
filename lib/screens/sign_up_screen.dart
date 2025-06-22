@@ -2,56 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:task_tracker_app/constants/colors.dart';
-import 'package:task_tracker_app/constants/texts.dart';
-import 'package:task_tracker_app/screens/sign_up_screen.dart';
+import 'package:task_tracker_app/screens/log_in_screen.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+import '../constants/texts.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColor(AppColors.homeScreenBgColor),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Form(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 50.h),
-              _buildLogInHeading(),
-              _buildUserIconLogo(),
-              SizedBox(height: 40.h),
-              _buildTextField(hintText: "Enter your email"),
-              _buildTextField(
-                hintText: "Enter your password",
-                suffixIcon: Padding(
-                  padding: EdgeInsets.only(right: 15.w),
-                  child: Icon(
-                    Icons.visibility,
-                    color: HexColor(AppColors.tabBarColor),
-                  ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 50.h),
+            buildSignUpHeading(),
+            _buildUserIconLogo(),
+            SizedBox(height: 30.h),
+            _buildTextField(hintText: "Enter your Name"),
+            _buildTextField(hintText: "Enter your Email"),
+            _buildTextField(
+              obscureText: true,
+              hintText: "Enter your Password",
+              suffixIcon: Padding(
+                padding: EdgeInsets.only(right: 15.w),
+                child: Icon(
+                  Icons.visibility,
+                  color: HexColor(AppColors.tabBarColor),
                 ),
               ),
-              _buildLogInButton(),
+            ),
+            _buildTextField(
+              obscureText: true,
+              hintText: "Enter your confirm password",
+              suffixIcon: Padding(
+                padding: EdgeInsets.only(right: 15.w),
+                child: Icon(
+                  Icons.visibility,
+                  color: HexColor(AppColors.tabBarColor),
+                ),
+              ),
+            ),
+            _buildLogInButton(),
 
-              SizedBox(height: 10.h),
-              _buildSignUpNavigationRow(),
-            ],
-          ),
+            SizedBox(height: 10.h),
+            _buildSignUpNavigationRow(),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildLogInHeading() {
+  Widget buildSignUpHeading() {
     return Text(
-      AppTexts.logInHeading,
+      AppTexts.signUpHeading,
       style: TextStyle(
         color: HexColor(AppColors.tabBarColor),
         fontSize: 30,
@@ -63,7 +75,7 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget _buildUserIconLogo() {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 50.h),
+        margin: EdgeInsets.only(top: 20.h),
         alignment: Alignment.center,
         height: 95.h,
         width: 95.h,
@@ -76,10 +88,15 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 
-  Widget _buildTextField({required String hintText, Widget? suffixIcon}) {
+  Widget _buildTextField({
+    required String hintText,
+    Widget? suffixIcon,
+    bool? obscureText,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
       child: TextFormField(
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(50),
@@ -89,6 +106,7 @@ class _LogInScreenState extends State<LogInScreen> {
             horizontal: 20.w,
             vertical: 15.h,
           ),
+
           suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: TextStyle(
@@ -116,7 +134,7 @@ class _LogInScreenState extends State<LogInScreen> {
         borderRadius: BorderRadius.circular(50),
       ),
       child: Text(
-        AppTexts.logIn,
+        AppTexts.signUp,
         style: TextStyle(
           color: Colors.white,
           fontSize: 17,
@@ -131,19 +149,24 @@ class _LogInScreenState extends State<LogInScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          AppTexts.notAccount,
+          AppTexts.alreadyAccount,
           style: TextStyle(color: HexColor(AppColors.tabBarColor)),
         ),
         SizedBox(width: 5.w),
         InkWell(
           onTap: () {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => SignUpScreen()),
+              MaterialPageRoute(
+                builder: (context) {
+                  return LogInScreen();
+                },
+              ),
+              (route) => false,
             );
           },
           child: Text(
-            AppTexts.signUp,
+            AppTexts.logIn,
             style: TextStyle(
               decoration: TextDecoration.underline,
 

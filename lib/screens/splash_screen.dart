@@ -79,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Container(
       margin: EdgeInsets.only(left: width * 0.150, top: height * 0.020),
       height: height * 0.090,
-      width: width * 0.190,
+      width: width * 0.200,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey, width: 1),
         borderRadius: BorderRadius.circular(50),
